@@ -1,0 +1,21 @@
+#!/bin/sh
+
+#main function
+trap 'echo "support-error: please check if the youtube-dl and ffmpeg are installed" ;exit' ERR
+
+which ffmpeg 
+which youtube-dl
+
+trap 'echo "website-error: check if the URL is correct"; exit' ERR
+
+case $1 in
+   [-][-][hH][eE][lL][pP]|[-][hH]) 
+		echo 'get mp3 from youtube. '
+        exit 0
+        ;;
+    *)
+		echo 'download ...'
+		youtube-dl --verbose -o temp.mp4 $1 
+		exit 0 
+        ;;
+esac
